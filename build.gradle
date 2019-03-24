@@ -33,7 +33,6 @@ version = "${config.version}-${config.build_number}"
 group= "am2" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "ArsMagica2"
 
-
 minecraft {
     version = "1.12.2-14.23.2.2654"
     runDir = "run"
@@ -45,28 +44,15 @@ minecraft {
 }
 
 jar {
-	manifest {
-		attributes 'FMLCorePlugin' : 'am2.common.asm.Preloader'
-		attributes 'FMLCorePluginContainsFMLMod' : 'true'
-	}
+    manifest {
+        attributes 'FMLCorePlugin' : 'am2.common.asm.Preloader'
+        attributes 'FMLCorePluginContainsFMLMod' : 'true'
+    }
 }
 
 dependencies {
-	deobfCompile "mezz.jei:jei_${config.mcversion}:${config.jei_version}:api"
-	runtime "mezz.jei:jei_${config.mcversion}:${config.jei_version}"
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+    deobfCompile "mezz.jei:jei_${config.mcversion}:${config.jei_version}:api"
+    runtime "mezz.jei:jei_${config.mcversion}:${config.jei_version}"
 }
 
 processResources
@@ -90,24 +76,24 @@ processResources
 }
 
 task incrementBuildNumber(dependsOn: 'reobfJar') {
-	doLast {
-		config.build_number = (config.build_number.toString().toInteger()) + 1
-		configFile.withWriter {
-			config.toProperties().store(it, "")
-		}
-	}
+    doLast {
+        config.build_number = (config.build_number.toString().toInteger()) + 1
+        configFile.withWriter {
+            config.toProperties().store(it, "")
+        }
+    }
 }
 
 def parseConfig(File config) {
-	config.withReader {
-		def prop = new Properties()
-		prop.load(it)
-		return (new ConfigSlurper().parse(prop))
-	}
+    config.withReader {
+        def prop = new Properties()
+        prop.load(it)
+        return (new ConfigSlurper().parse(prop))
+    }
 }
 
 jar {
-	archiveName = "${baseName}-${version}.jar"
+    archiveName = "${baseName}-${version}.jar"
 }
 
 defaultTasks 'clean', 'build', 'incrementBuildNumber'
