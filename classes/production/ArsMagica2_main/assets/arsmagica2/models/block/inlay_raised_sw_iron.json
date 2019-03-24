@@ -1,6 +1,0 @@
-{
-    "parent": "arsmagica2:block/rail_raised_sw",
-    "textures": {
-        "rail": "arsmagica2:blocks/Inlay_Straight_Iron"
-    }
-}

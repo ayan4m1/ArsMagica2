@@ -1,6 +1,0 @@
-{
-    "parent": "block/torch_wall",
-    "textures": {
-        "torch": "arsmagica2:blocks/torch_vinteum"
-    }
-}
