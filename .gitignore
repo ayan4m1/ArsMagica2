@@ -47,3 +47,4 @@ MinecraftForge-License.txt
 *.launch
 build_travis.*
 build.bat
+gradle.properties

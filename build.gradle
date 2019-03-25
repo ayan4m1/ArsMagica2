@@ -42,8 +42,6 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 ext.configFile = file('build.properties')
 ext.config = parseConfig(ext.configFile)
-ext.apiKeyFile = file('build-key.properties')
-ext.apiKeyConfig = parseConfig(ext.apiKeyFile)
 
 group = "com.arsmagica"
 version = config.version
@@ -93,11 +91,31 @@ jar {
 }
 
 curseforge {
-    apiKey = apiKeyConfig.curse_forge_api_key
+    apiKey = 
     project {
         id = config.curse_forge_id
         changelog = file('CHANGELOG.md')
         releaseType = 'alpha'
+    }
+}
+
+publishing {
+    publications {
+        arsMagica(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = "codecube"
+            url = "https://nexus.codecube.xyz/repository/maven-snapshots/"
+
+            credentials {
+                username ""
+                password ""
+            }
+        }
     }
 }
 
