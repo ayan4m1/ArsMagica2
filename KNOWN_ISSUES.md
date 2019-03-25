@@ -1,5 +1,9 @@
-**This is the current list of known bugs, if there are any that have NOT been added to this yet, make an issue post!**
+This is the current list of known bugs.
+
+If you encounter an issue that is not described in this list, please create an issue!
+
 Crashes:
+
 	- Crash with starstrike hitting non-living entities(i haven't been able to produce this but it has been reported)
 	- Client crash on spell cast(I have not been able to reproduce this but it has been reported)
 	
