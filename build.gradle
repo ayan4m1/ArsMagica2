@@ -52,7 +52,6 @@ archivesBaseName = "ArsMagica2"
 minecraft {
     version = "1.12.2-14.23.5.2823"
     runDir = "run"
-    replace 'GRADLE:BUILD', config.build_number
     replace 'GRADLE:VERSION', config.version
     replaceIn 'ArsMagica2.java'
     mappings = "snapshot_20171003"

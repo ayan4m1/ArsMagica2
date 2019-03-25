@@ -29,7 +29,7 @@ import java.io.File;
 public class ArsMagica2 {
 
 	public static final String MODID = "arsmagica2";
-	public static final String VERSION = "GRADLE:VERSION" + "GRADLE:BUILD";
+	public static final String VERSION = "GRADLE:VERSION";
 	public static final String GUIFACTORY = "am2.client.config.AMGuiFactory";
 	public static SimpleNetworkWrapper network;
 
