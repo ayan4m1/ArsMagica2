@@ -42,10 +42,11 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 ext.configFile = file('build.properties')
 ext.config = parseConfig(ext.configFile)
+ext.apiKeyFile = file('build-key.properties')
+ext.apiKeyConfig = parseConfig(ext.apiKeyFile)
 
 group = "com.arsmagica"
-version = "${config.version}-${config.build_number}"
-
+version = config.version
 archivesBaseName = "ArsMagica2"
 
 minecraft {
@@ -93,13 +94,11 @@ jar {
 }
 
 curseforge {
-    apiKeyFile = parseConfig(file('build-key.properties'))
-    apiKey = apiKeyFile.curse_forge_api_key
+    apiKey = apiKeyConfig.curse_forge_api_key
     project {
         id = config.curse_forge_id
         changelog = file('CHANGELOG.md')
         releaseType = 'alpha'
-        addGameVersion = '1.12.12'
     }
 }
 
