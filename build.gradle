@@ -102,7 +102,7 @@ curseforge {
 publishing {
     publications {
         arsMagica(MavenPublication) {
-            artifactId "ArsMagica2"
+            artifactId = "ArsMagica2"
             from components.java
         }
     }
