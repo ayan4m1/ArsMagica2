@@ -91,7 +91,7 @@ jar {
 }
 
 curseforge {
-    apiKey = 
+    apiKey = curseForgeApiKey
     project {
         id = config.curse_forge_id
         changelog = file('CHANGELOG.md')
@@ -102,6 +102,7 @@ curseforge {
 publishing {
     publications {
         arsMagica(MavenPublication) {
+            artifactId "ArsMagica2"
             from components.java
         }
     }
