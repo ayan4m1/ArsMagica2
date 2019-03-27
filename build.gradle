@@ -44,7 +44,7 @@ if (hasProperty("buildNumber")) {
     if (buildNumber instanceof Integer) {
         ext.buildNumber = buildNumber
     } else {
-        ext.buildNumber = toInteger(buildNumber)
+        ext.buildNumber = buildNumber.toInteger()
     }
 } else {
     ext.buildNumber = 0
