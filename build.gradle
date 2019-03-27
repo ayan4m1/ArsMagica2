@@ -64,7 +64,7 @@ archivesBaseName = "ArsMagica2"
 minecraft {
     version = "1.12.2-14.23.5.2823"
     runDir = "run"
-    replace 'GRADLE:VERSION', version
+    replace 'GRADLE:VERSION', "${version}-SNAPSHOT"
     replaceIn 'ArsMagica2.java'
     mappings = "snapshot_20171003"
 }
@@ -122,8 +122,10 @@ if (hasProperty("curseForgeApiKey")) {
 publishing {
     publications {
         arsMagica(MavenPublication) {
-            artifactId = "ArsMagica2"
+            artifactId 'ArsMagica2'
             from components.java
+            groupId 'com.arsmagica'
+            version project.version
         }
     }
 
