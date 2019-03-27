@@ -40,11 +40,19 @@ apply plugin: 'maven-publish'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
+if (!hasProperty("buildNumber")) {
+    ext.buildNumber = 0
+}
+
 ext.configFile = file('build.properties')
 ext.config = parseConfig(ext.configFile)
 
 group = "com.arsmagica"
-version = config.version
+if (ext.buildNumber > 0) {
+    version = "${config.version}-${ext.buildNumber}"
+} else {
+    version = config.version
+}
 archivesBaseName = "ArsMagica2"
 
 minecraft {
