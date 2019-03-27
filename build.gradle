@@ -41,7 +41,11 @@ sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 if (hasProperty("buildNumber")) {
-    ext.buildNumber = toInteger(buildNumber)
+    if (buildNumber instanceof Integer) {
+        ext.buildNumber = buildNumber
+    } else {
+        ext.buildNumber = toInteger(buildNumber)
+    }
 } else {
     ext.buildNumber = 0
 }
