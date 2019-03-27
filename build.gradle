@@ -48,7 +48,7 @@ ext.configFile = file('build.properties')
 ext.config = parseConfig(ext.configFile)
 
 group = "com.arsmagica"
-if (ext.buildNumber > 0) {
+if (toInteger(ext.buildNumber) > 0) {
     version = "${config.version}-${ext.buildNumber}"
 } else {
     version = config.version
