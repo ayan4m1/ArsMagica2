@@ -90,12 +90,18 @@ jar {
     archiveName = "${baseName}-${version}.jar"
 }
 
-curseforge {
-    apiKey = curseForgeApiKey
-    project {
-        id = config.curse_forge_id
-        changelog = file('CHANGELOG.md')
-        releaseType = 'alpha'
+if (hasProperty("curseForgeApiKey")) {
+    curseforge {
+        apiKey = curseForgeApiKey
+        project {
+            id = config.curse_forge_id
+            changelog = file('CHANGELOG.md')
+            if (hasProperty("curseForgeReleaseType")) {
+                releaseType = curseForgeReleaseType
+            } else {
+                releaseType = 'alpha'
+            }
+        }
     }
 }
 
@@ -110,11 +116,17 @@ publishing {
     repositories {
         maven {
             name = "codecube"
-            url = "https://nexus.codecube.xyz/repository/maven-snapshots/"
+            if (hasProperty("nexusReleaseType")) {
+                url = "https://nexus.codecube.xyz/repository/maven-${nexusReleaseType}s/"
+            } else {
+                 url = "https://nexus.codecube.xyz/repository/maven-snapshots/"
+            }
 
-            credentials {
-                username nexusUsername
-                password nexusPassword
+            if (hasProperty("nexusUsername") && hasProperty("nexusPassword")) {
+                credentials {
+                    username nexusUsername
+                    password nexusPassword
+                }
             }
         }
     }
