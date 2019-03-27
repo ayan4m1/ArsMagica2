@@ -131,17 +131,17 @@ publishing {
 
     repositories {
         maven {
-            if (hasProperty("nexusReleaseType")) {
-                url = "https://nexus.codecube.xyz/repository/maven-${nexusReleaseType}s/"
-            } else {
-                url = "https://nexus.codecube.xyz/repository/maven-snapshots/"
-            }
-
             if (hasProperty("nexusUsername") && hasProperty("nexusPassword")) {
                 credentials {
-                    username = nexusUsername
-                    password = nexusPassword
+                    username nexusUsername
+                    password nexusPassword
                 }
+            }
+
+            if (hasProperty("nexusReleaseType")) {
+                url "https://nexus.codecube.xyz/repository/maven-${nexusReleaseType}s/"
+            } else {
+                url "https://nexus.codecube.xyz/repository/maven-snapshots/"
             }
         }
     }
