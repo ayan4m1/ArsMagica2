@@ -55,9 +55,17 @@ ext.config = parseConfig(ext.configFile)
 
 group = "com.arsmagica"
 if (ext.buildNumber > 0) {
-    version = "${config.version}-${ext.buildNumber}"
+    if (hasProperty("nexusReleaseType") && nexusReleaseType == 'release') {
+        version = "${config.version}-${ext.buildNumber}"
+    } else {
+        version = "${config.version}-${ext.buildNumber}-SNAPSHOT"
+    }
 } else {
-    version = config.version
+    if (hasProperty("nexusReleaseType") && nexusReleaseType == 'release') {
+        version = config.version
+    } else {
+        version = "${config.version}-SNAPSHOT"
+    }
 }
 archivesBaseName = "ArsMagica2"
 
