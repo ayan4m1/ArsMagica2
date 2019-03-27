@@ -55,7 +55,7 @@ ext.config = parseConfig(ext.configFile)
 
 group = "com.arsmagica"
 if (ext.buildNumber > 0) {
-    version = "${config.version}-${ext.buildNumber}"
+    version = "${config.version}-${ext.buildNumber}-SNAPSHOT"
 } else {
     version = config.version
 }
