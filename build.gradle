@@ -139,9 +139,11 @@ publishing {
 
     repositories {
         maven {
-            credentials {
-                username nexusUsername
-                password nexusPassword
+            if (hasProperty("nexusUsername") && hasProperty("nexusPassword")) {
+                credentials {
+                    username nexusUsername
+                    password nexusPassword
+                }
             }
 
             if (hasProperty("nexusReleaseType")) {
