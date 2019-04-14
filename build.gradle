@@ -127,29 +127,29 @@ if (hasProperty("curseForgeApiKey")) {
     }
 }
 
-publishing {
-    publications {
-        arsMagica(MavenPublication) {
-            artifactId 'ArsMagica2'
-            from components.java
-            groupId 'com.arsmagica'
-            version project.version
+if (hasProperty("nexusUsername") && hasProperty("nexusPassword")) {
+    publishing {
+        publications {
+            arsMagica(MavenPublication) {
+                artifactId 'ArsMagica2'
+                from components.java
+                groupId 'com.arsmagica'
+                version project.version
+            }
         }
-    }
 
-    repositories {
-        maven {
-            if (hasProperty("nexusUsername") && hasProperty("nexusPassword")) {
+        repositories {
+            maven {
                 credentials {
                     username nexusUsername
                     password nexusPassword
                 }
-            }
 
-            if (hasProperty("nexusReleaseType")) {
-                url "https://nexus.codecube.xyz/repository/maven-${nexusReleaseType}s/"
-            } else {
-                url "https://nexus.codecube.xyz/repository/maven-snapshots/"
+                if (hasProperty("nexusReleaseType")) {
+                    url "https://nexus.codecube.xyz/repository/maven-${nexusReleaseType}s/"
+                } else {
+                    url "https://nexus.codecube.xyz/repository/maven-snapshots/"
+                }
             }
         }
     }
